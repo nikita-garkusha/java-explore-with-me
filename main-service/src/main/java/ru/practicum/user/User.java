@@ -1,27 +1,23 @@
 package ru.practicum.user;
 
-import lombok.*;
-import lombok.experimental.FieldDefaults;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-import static lombok.AccessLevel.PRIVATE;
-
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "USERS", schema = "PUBLIC")
-@FieldDefaults(level = PRIVATE)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    String name;
+    private String name;
 
     @Column(unique = true)
-    String email;
+    private String email;
 }

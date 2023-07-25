@@ -28,8 +28,8 @@ public class CommentPublicController {
 
 
     @Operation(summary = "Просмотр комментариев к событию", tags = "Public: Комментарии",
-            description = "the endpoint returns complete information about all comments to the specified event\\n\"+\n" +
-                    "\"\\\"\\n If no comments are found by the specified filters, it returns an empty list.",
+            description = "Эндпоинт возвращает полную информацию обо всех комментариях к указанному событию\n" +
+                    "\nВ случае, если по заданным фильтрам не найдено ни одного комментария, возвращает пустой список.",
             operationId = "getAllCommentsByEventId")
     @ApiResponses(value = {
             @ApiResponse(

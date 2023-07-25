@@ -2,26 +2,22 @@ package ru.practicum.event.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
 import java.util.Set;
 
-import static lombok.AccessLevel.PRIVATE;
-
 @Data
 @AllArgsConstructor
-@FieldDefaults(level = PRIVATE)
 public class EventSearchParamsPublicDto {
-    String text;
-    Set<Long> categories;
-    Boolean paid;
-    LocalDateTime rangeStart;
-    LocalDateTime rangeEnd;
-    Boolean onlyAvailable;
-    SortType sort;
-    Integer from;
-    Integer size;
+    private String text;
+    private Set<Long> categories;
+    private Boolean paid;
+    private LocalDateTime rangeStart;
+    private LocalDateTime rangeEnd;
+    private Boolean onlyAvailable;
+    private SortType sort;
+    private Integer from;
+    private Integer size;
 
     public enum SortType {
         EVENT_DATE,

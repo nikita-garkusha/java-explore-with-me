@@ -1,25 +1,21 @@
 package ru.practicum.category;
 
-import lombok.*;
-import lombok.experimental.FieldDefaults;
-
-import static lombok.AccessLevel.PRIVATE;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "CATEGORIES", schema = "PUBLIC")
-@FieldDefaults(level = PRIVATE)
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Column(unique = true)
-    String name;
+    private String name;
 }

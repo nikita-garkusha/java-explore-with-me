@@ -30,7 +30,6 @@ import java.util.Set;
 @RequestMapping(path = "/admin/comments")
 public class CommentAdminController {
     private final CommentService commentService;
-    public final String dataFormat = "yyyy-MM-dd HH:mm:ss";
 
     @Operation(summary = "Удаление комментариев по запросу от администратора",
             tags = "Admin: Комментарии",
@@ -63,8 +62,8 @@ public class CommentAdminController {
 
     @Operation(summary = "Поиск комментариев по параметрам",
             tags = "Admin: Комментарии",
-            description = "The endpoint returns complete information about all comments that match the passed conditions.\\n\" +\n" +
-                    "\n If no comments are found by the specified filters, returns an empty list",
+            description = "Эндпоинт возвращает полную информацию обо всех комментариях, подходящих под переданные условия.\n" +
+                    "\nВ случае, если по заданным фильтрам не найдено ни одного комментария, возвращает пустой список",
             operationId = "getAllCommentsByParams")
     @GetMapping()
     public List<CommentDto> getAllByParams(
@@ -78,7 +77,7 @@ public class CommentAdminController {
             @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
             @Parameter(description = "Дата и время не раньше которых должен быть опубликован комментарий") LocalDateTime rangeStart,
             @RequestParam(required = false)
-            @DateTimeFormat(pattern = dataFormat)
+            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
             @Parameter(description = "Дата и время не позже которых должен быть опубликован комментарий") LocalDateTime rangeEnd,
             @RequestParam(required = false, defaultValue = "0")
             @Parameter(description = "Количество комментариев, которые нужно пропустить для формирования текущего набора") Integer from,

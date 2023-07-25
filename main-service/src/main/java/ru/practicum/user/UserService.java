@@ -16,7 +16,6 @@ import java.util.Optional;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-@Transactional
 public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
@@ -28,7 +27,7 @@ public class UserService {
         return result;
     }
 
-
+    @Transactional
     public UserDto create(UserDto userDto) {
         UserDto result = Optional.of(userRepository.save(userMapper.toUser(userDto)))
                 .map(userMapper::toUserDto)
@@ -38,6 +37,7 @@ public class UserService {
         return result;
     }
 
+    @Transactional
     public void deleteById(Long userId) {
         User result = getUserById(userId);
         userRepository.deleteById(result.getId());
