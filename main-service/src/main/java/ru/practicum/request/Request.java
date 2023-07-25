@@ -1,8 +1,6 @@
 package ru.practicum.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.practicum.event.model.Event;
 import ru.practicum.user.User;
@@ -12,7 +10,9 @@ import java.time.LocalDateTime;
 
 import static lombok.AccessLevel.PRIVATE;
 
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

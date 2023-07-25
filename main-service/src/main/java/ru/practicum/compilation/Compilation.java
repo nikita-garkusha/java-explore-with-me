@@ -1,8 +1,6 @@
 package ru.practicum.compilation;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import ru.practicum.event.model.Event;
 
@@ -11,7 +9,9 @@ import java.util.Set;
 
 import static lombok.AccessLevel.PRIVATE;
 
-@Data
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

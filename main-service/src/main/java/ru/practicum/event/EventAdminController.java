@@ -23,14 +23,15 @@ import java.util.Set;
 @Validated
 public class EventAdminController {
     public final EventService eventService;
+    public final String DATA_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
     @GetMapping()
     public List<EventFullDto> getAll(
             @RequestParam(required = false) Set<Long> users,
             @RequestParam(required = false) Set<State> states,
             @RequestParam(required = false) Set<Long> categories,
-            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeStart,
-            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeEnd,
+            @RequestParam(required = false) @DateTimeFormat(pattern = DATA_FORMAT) LocalDateTime rangeStart,
+            @RequestParam(required = false) @DateTimeFormat(pattern = DATA_FORMAT) LocalDateTime rangeEnd,
             @RequestParam(required = false, defaultValue = "0") Integer from,
             @RequestParam(required = false, defaultValue = "10") Integer size,
             HttpServletRequest httpServletRequest) {
