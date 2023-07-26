@@ -24,6 +24,7 @@ import java.util.Set;
 public class EventAdminController {
     public final EventService eventService;
     final String dataFormat = "yyyy-MM-dd HH:mm:ss";
+
     @GetMapping()
     public List<EventFullDto> getAll(
             @RequestParam(required = false) Set<Long> users,
