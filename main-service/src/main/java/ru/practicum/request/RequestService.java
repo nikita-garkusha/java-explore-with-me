@@ -26,13 +26,13 @@ import static ru.practicum.request.Status.CONFIRMED;
 @RequiredArgsConstructor
 @Slf4j
 @Transactional(readOnly = true)
-@FieldDefaults(level = PRIVATE)
+@FieldDefaults(makeFinal = true, level = PRIVATE)
 public class RequestService {
-    final RequestRepository requestRepository;
-    final EventRepository eventRepository;
-    final RequestMapper requestMapper;
-    final UserService userService;
-    final EventService eventService;
+    RequestRepository requestRepository;
+    EventRepository eventRepository;
+    RequestMapper requestMapper;
+    UserService userService;
+    EventService eventService;
 
     public List<RequestDto> getByUserId(Long userId) {
         User user = userService.getUserById(userId);

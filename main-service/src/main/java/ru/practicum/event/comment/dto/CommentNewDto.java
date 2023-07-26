@@ -15,7 +15,6 @@ import javax.validation.constraints.NotNull;
 @Schema(description = "Новый комментарий")
 public class CommentNewDto {
 
-    @NotNull
     @NotBlank
     @Length(min = 3, max = 500)
     @Schema(description = "Текст комментария")

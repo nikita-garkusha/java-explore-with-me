@@ -232,7 +232,7 @@ public class EventService {
 
         updatedRequestStatus.forEach(request -> {
             if (request.getStatus().equals(CONFIRMED)) {
-                throw new IllegalStateException("Request already confirmed " + request.getId());
+                throw new IllegalStateException(String.format("Request already confirmed %s", request.getId()));
             }
         });
 

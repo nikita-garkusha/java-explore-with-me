@@ -25,12 +25,12 @@ import static lombok.AccessLevel.PRIVATE;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-@FieldDefaults(level = PRIVATE)
+@FieldDefaults(makeFinal = true, level = PRIVATE)
 public class CommentService {
-    final CommentRepository commentRepository;
-    final UserService userService;
-    final EventService eventService;
-    final CommentMapper commentMapper;
+    CommentRepository commentRepository;
+    UserService userService;
+    EventService eventService;
+    CommentMapper commentMapper;
 
     @Transactional
     public CommentDto create(Long userId, Long eventId, CommentNewDto commentNewDto) {
