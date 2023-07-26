@@ -1,8 +1,7 @@
 package ru.practicum.event.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import ru.practicum.category.Category;
 import ru.practicum.location.Location;
 import ru.practicum.user.User;
@@ -10,56 +9,61 @@ import ru.practicum.user.User;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
+import static lombok.AccessLevel.PRIVATE;
+
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "EVENTS", schema = "PUBLIC")
+@FieldDefaults(level = PRIVATE)
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
-    private String annotation;
+    String annotation;
 
     @ManyToOne
     @JoinColumn(name = "CATEGORY_ID")
-    private Category category;
+    Category category;
 
     @Column(name = "CONFIRMED_REQUESTS")
-    private Long confirmedRequests;
+    Long confirmedRequests;
 
     @Column(name = "CREATED_ON")
-    private LocalDateTime createdOn;
+    LocalDateTime createdOn;
 
-    private String description;
+    String description;
 
     @Column(name = "EVENT_DATE")
-    private LocalDateTime eventDate;
+    LocalDateTime eventDate;
 
     @ManyToOne
     @JoinColumn(name = "INITIATOR_ID")
-    private User initiator;
+    User initiator;
 
     @OneToOne
     @JoinColumn(name = "LOCATION_ID")
-    private Location location;
+    Location location;
 
-    private Boolean paid;
+    Boolean paid;
 
     @Column(name = "PARTICIPANT_LIMIT")
-    private Long participantLimit;
+    Long participantLimit;
 
     @Column(name = "PUBLISHED_ON")
-    private LocalDateTime publishedOn;
+    LocalDateTime publishedOn;
 
     @Column(name = "REQUEST_MODERATION")
-    private Boolean requestModeration;
+    Boolean requestModeration;
 
     @Enumerated(EnumType.STRING)
-    private State state;
+    State state;
 
-    private String title;
+    String title;
 
-    private Long views;
+    Long views;
 }

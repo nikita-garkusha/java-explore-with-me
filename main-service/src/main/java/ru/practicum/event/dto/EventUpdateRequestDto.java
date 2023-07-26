@@ -4,27 +4,31 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.hibernate.validator.constraints.Length;
 import ru.practicum.location.LocationDto;
 
 import java.time.LocalDateTime;
 
+import static lombok.AccessLevel.PRIVATE;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldDefaults(level = PRIVATE)
 public class EventUpdateRequestDto {
     @Length(min = 20, max = 2000)
-    private String annotation;
-    private Long category;
+    String annotation;
+    Long category;
     @Length(min = 20, max = 7000)
-    private String description;
+    String description;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime eventDate;
-    private LocationDto location;
-    private Boolean paid;
-    private Long participantLimit;
-    private Boolean requestModeration;
+    LocalDateTime eventDate;
+    LocationDto location;
+    Boolean paid;
+    Long participantLimit;
+    Boolean requestModeration;
     @Length(min = 3, max = 120)
-    private String title;
+    String title;
 }
 

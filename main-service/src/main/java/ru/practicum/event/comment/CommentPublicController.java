@@ -19,7 +19,7 @@ import java.util.List;
 
 @Slf4j
 @Validated
-@Tag(name = "Public: Комментарии", description = "Публичный API для работы с комментариями")
+@Tag(name = "Public: Comments", description = "Public API for working with comments")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/comments")
@@ -27,14 +27,14 @@ public class CommentPublicController {
     private final CommentService commentService;
 
 
-    @Operation(summary = "Просмотр комментариев к событию", tags = "Public: Комментарии",
-            description = "Эндпоинт возвращает полную информацию обо всех комментариях к указанному событию\n" +
-                    "\nВ случае, если по заданным фильтрам не найдено ни одного комментария, возвращает пустой список.",
+    @Operation(summary = "Viewing event comments", tags = "Public: Comments",
+            description = "The endpoint returns complete information about all comments on the specified event\n" +
+                    "\nIf no comments are found for the specified filters, returns an empty list.",
             operationId = "getAllCommentsByEventId")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "404",
-                    description = "Событие не найдено",
+                    description = "Event not found",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -44,13 +44,13 @@ public class CommentPublicController {
     @GetMapping("/{eventId}")
     public List<CommentDto> getAllByEventId(
             @PathVariable
-            @Parameter(description = "id события") Long eventId,
+            @Parameter(description = "event id") Long eventId,
             @RequestParam(required = false, defaultValue = "0")
-            @Parameter(description = "Количество комментариев, которые нужно пропустить для формирования текущего набора") Integer from,
+            @Parameter(description = "The number of comments that need to be skipped to form the current set") Integer from,
             @RequestParam(required = false, defaultValue = "10")
-            @Parameter(description = "Количество комментариев в наборе") Integer size,
+            @Parameter(description = "Number of comments in the set") Integer size,
             HttpServletRequest httpServletRequest) {
-        log.info("Получен {} запрос к {} от {} ", httpServletRequest.getMethod(),
+        log.info("Received {} request to {} from {} ", httpServletRequest.getMethod(),
                 httpServletRequest.getRequestURI(),
                 httpServletRequest.getRemoteAddr());
         return commentService.getAllByEventId(eventId, from, size);

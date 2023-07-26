@@ -20,7 +20,7 @@ public class CompilationPublicController {
                                        @RequestParam(defaultValue = "0") Integer from,
                                        @RequestParam(defaultValue = "10") Integer size,
                                        HttpServletRequest httpServletRequest) {
-        log.info("Получен {} запрос к {} от {} ", httpServletRequest.getMethod(),
+        log.info("Received {} request to {} from {} ", httpServletRequest.getMethod(),
                 httpServletRequest.getRequestURI(),
                 httpServletRequest.getRemoteAddr());
         return compilationService.getAll(pinned, from, size);
@@ -29,7 +29,7 @@ public class CompilationPublicController {
     @GetMapping("/{compId}")
     public CompilationDto getById(@PathVariable Long compId,
                                   HttpServletRequest httpServletRequest) {
-        log.info("Получен {} запрос к {} от {} ", httpServletRequest.getMethod(),
+        log.info("Received {} request to {} from {} ", httpServletRequest.getMethod(),
                 httpServletRequest.getRequestURI(),
                 httpServletRequest.getRemoteAddr());
         return compilationService.getById(compId);

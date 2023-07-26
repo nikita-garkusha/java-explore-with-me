@@ -1,35 +1,39 @@
 package ru.practicum.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import ru.practicum.event.model.Event;
 import ru.practicum.user.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Data
+import static lombok.AccessLevel.PRIVATE;
+
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "REQUESTS", schema = "PUBLIC")
+@FieldDefaults(level = PRIVATE)
 public class Request {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
     @ManyToOne
     @JoinColumn(name = "EVENT_ID")
-    private Event event;
+    Event event;
 
     @ManyToOne
     @JoinColumn(name = "REQUESTER_ID")
-    private User requester;
+    User requester;
 
-    private LocalDateTime created;
+    LocalDateTime created;
 
     @Enumerated(EnumType.STRING)
-    private Status status;
+    Status status;
 }

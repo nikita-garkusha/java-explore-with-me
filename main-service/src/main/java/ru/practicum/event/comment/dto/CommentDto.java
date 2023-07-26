@@ -5,28 +5,32 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import ru.practicum.user.dto.UserShortDto;
 
 import java.time.LocalDateTime;
+
+import static lombok.AccessLevel.PRIVATE;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Schema(description = "Комментарий")
+@FieldDefaults(level = PRIVATE)
 public class CommentDto {
 
     @Schema(description = "id комментария")
-    private Long id;
+    Long id;
 
     @Schema(description = "Текст комментария")
-    private String text;
+    String text;
 
-    private UserShortDto author;
+    UserShortDto author;
 
     @Schema(description = "id события")
-    private Long eventId;
+    Long eventId;
 
     @Schema(description = "Дата создания")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime created;
+    LocalDateTime created;
 }

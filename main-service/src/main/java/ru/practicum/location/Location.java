@@ -1,22 +1,26 @@
 package ru.practicum.location;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
-@Data
+import static lombok.AccessLevel.PRIVATE;
+
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "LOCATIONS", schema = "PUBLIC")
+@FieldDefaults(level = PRIVATE)
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
 
-    private Float lat;
+    Float lat;
 
-    private Float lon;
+    Float lon;
 }

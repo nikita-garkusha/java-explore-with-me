@@ -18,14 +18,15 @@ import java.util.Set;
 @RequestMapping("/events")
 public class EventPublicController {
     public final EventService eventService;
+    final String dataFormat = "yyyy-MM-dd HH:mm:ss";
 
     @GetMapping
     public List<EventFullDto> getAll(
             @RequestParam(required = false) String text,
             @RequestParam(required = false) Set<Long> categories,
             @RequestParam(required = false) Boolean paid,
-            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeStart,
-            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeEnd,
+            @RequestParam(required = false) @DateTimeFormat(pattern = dataFormat) LocalDateTime rangeStart,
+            @RequestParam(required = false) @DateTimeFormat(pattern = dataFormat) LocalDateTime rangeEnd,
             @RequestParam(required = false, defaultValue = "false") Boolean onlyAvailable,
             @RequestParam(required = false, defaultValue = "EVENT_DATE") EventSearchParamsPublicDto.SortType sort,
             @RequestParam(required = false, defaultValue = "0") Integer from,

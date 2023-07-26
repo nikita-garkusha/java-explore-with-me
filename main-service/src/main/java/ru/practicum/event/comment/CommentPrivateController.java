@@ -22,20 +22,20 @@ import java.util.List;
 
 @Slf4j
 @Validated
-@Tag(name = "Private: Комментарии", description = "Закрытый API для работы с комментариями")
+@Tag(name = "Private: Комментарии", description = "Closed API for working with comments")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/users/{userId}/comments")
 public class CommentPrivateController {
     private final CommentService commentService;
 
-    @Operation(summary = "Добавление нового комментария к событию",
-            tags = "Private: Комментарии",
+    @Operation(summary = "Adding a new comment to an event",
+            tags = "Private: Comments",
             operationId = "createComment")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "404",
-                    description = "Событие не найдено",
+                    description = "Event not found",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -43,7 +43,7 @@ public class CommentPrivateController {
                     }),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Пользователь не найден",
+                    description = "User not found",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -53,24 +53,24 @@ public class CommentPrivateController {
     @PostMapping("/{eventId}")
     @ResponseStatus(HttpStatus.CREATED)
     public CommentDto create(@PathVariable
-                             @Parameter(description = "id события") Long userId,
+                             @Parameter(description = "event id") Long userId,
                              @PathVariable
-                             @Parameter(description = "id события") Long eventId,
+                             @Parameter(description = "event id") Long eventId,
                              @RequestBody @Valid CommentNewDto commentNewDto,
                              HttpServletRequest httpServletRequest) {
-        log.info("Получен {} запрос к {} от {} ", httpServletRequest.getMethod(),
+        log.info("Received {} request to {} from {} ", httpServletRequest.getMethod(),
                 httpServletRequest.getRequestURI(),
                 httpServletRequest.getRemoteAddr());
         return commentService.create(userId, eventId, commentNewDto);
     }
 
-    @Operation(summary = "Обновление комментария",
-            tags = "Private: Комментарии",
+    @Operation(summary = "Updating the comment",
+            tags = "Private: Comments",
             operationId = "updateComment")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "404",
-                    description = "Комментарий не найден",
+                    description = "Comment not found",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -79,27 +79,27 @@ public class CommentPrivateController {
     })
     @PatchMapping("/{commentId}")
     public CommentDto update(@PathVariable
-                             @Parameter(description = "id пользователя") Long userId,
+                             @Parameter(description = "user id") Long userId,
                              @PathVariable
-                             @Parameter(description = "id комментария") Long commentId,
+                             @Parameter(description = "comment id") Long commentId,
                              @RequestBody @Valid CommentNewDto commentNewDto,
                              HttpServletRequest httpServletRequest) {
-        log.info("Получен {} запрос к {} от {} ", httpServletRequest.getMethod(),
+        log.info("Received {} request to {} from {} ", httpServletRequest.getMethod(),
                 httpServletRequest.getRequestURI(),
                 httpServletRequest.getRemoteAddr());
         return commentService.update(userId, commentId, commentNewDto);
     }
 
-    @Operation(summary = "Удаление комментариев по запросу от пользователя",
-            tags = "Private: Комментарии",
+    @Operation(summary = "Deleting comments on request from the user",
+            tags = "Private: Comments",
             operationId = "deleteCommentByUserRequest")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "204",
-                    description = "Комментарий удален"),
+                    description = "Comment deleted"),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Комментарий не найден",
+                    description = "Comment not found",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -108,7 +108,7 @@ public class CommentPrivateController {
                     }),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Пользователь не найден",
+                    description = "User not found",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -117,7 +117,7 @@ public class CommentPrivateController {
                     }),
             @ApiResponse(
                     responseCode = "409",
-                    description = "Пользователь не является автором комментария",
+                    description = "The user is not the author of the comment",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -128,25 +128,25 @@ public class CommentPrivateController {
     @DeleteMapping("/{commentId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable
-                           @Parameter(description = "id пользователя") Long userId,
+                           @Parameter(description = "user id") Long userId,
                            @PathVariable
-                           @Parameter(description = "id комментария") Long commentId,
+                           @Parameter(description = "comment id") Long commentId,
                            HttpServletRequest httpServletRequest) {
-        log.info("Получен {} запрос к {} от {} ", httpServletRequest.getMethod(),
+        log.info("Received {} request to {} from {} ", httpServletRequest.getMethod(),
                 httpServletRequest.getRequestURI(),
                 httpServletRequest.getRemoteAddr());
         commentService.deleteByUserRequest(userId, commentId);
     }
 
-    @Operation(summary = "Получение комментариев пользователя",
-            tags = "Private: Комментарии",
-            description = "Эндпоинт возвращает полную информацию обо всех комментариях, оставленных пользователем.\n" +
-                    "\nВ случае, если нет ни одного комментария, возвращает пустой список",
+    @Operation(summary = "Getting user comments",
+            tags = "Private: Comments",
+            description = "The endpoint returns complete information about all comments left by the user.\n" +
+                    "\nIf there are no comments, returns an empty list",
             operationId = "getAllCommentsByUserId")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "404",
-                    description = "Пользователь не найден",
+                    description = "User not found",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -158,7 +158,7 @@ public class CommentPrivateController {
                                            @RequestParam(defaultValue = "0") Integer from,
                                            @RequestParam(defaultValue = "10") Integer size,
                                            HttpServletRequest httpServletRequest) {
-        log.info("Получен {} запрос к {} от {} ", httpServletRequest.getMethod(),
+        log.info("Received {} request to {} from {} ", httpServletRequest.getMethod(),
                 httpServletRequest.getRequestURI(),
                 httpServletRequest.getRemoteAddr());
         return commentService.getAllByUserId(userId, from, size);

@@ -31,18 +31,18 @@ import java.util.Set;
 public class CommentAdminController {
     private final CommentService commentService;
 
-    @Operation(summary = "Удаление комментариев по запросу от администратора",
-            tags = "Admin: Комментарии",
-            description = "При удалении владельца комментария, удалятся так же и комментарий.\n" +
-                    "\nПри удалении эвента, удалятся все комментарии к этому эвенту.",
+    @Operation(summary = "Deleting comments on request from the administrator",
+            tags = "Admin: Comments",
+            description = "When the owner of a comment is deleted, the comment is also deleted.\n" +
+                    "\nWhen deleting an event, all comments to this event will be deleted.",
             operationId = "deleteCommentByAdminRequest")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "204",
-                    description = "Комментарий удален"),
+                    description = "Comment deleted"),
             @ApiResponse(
                     responseCode = "404",
-                    description = "Комментарий не найден",
+                    description = "Comment not found",
                     content = {
                             @Content(
                                     mediaType = "application/json",
@@ -54,37 +54,37 @@ public class CommentAdminController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable @Parameter(description = "id комментария") Long commentId,
                        HttpServletRequest httpServletRequest) {
-        log.info("Получен {} запрос к {} от {} ", httpServletRequest.getMethod(),
+        log.info("Received {} request to {} from {} ", httpServletRequest.getMethod(),
                 httpServletRequest.getRequestURI(),
                 httpServletRequest.getRemoteAddr());
         commentService.deleteByAdminRequest(commentId);
     }
 
-    @Operation(summary = "Поиск комментариев по параметрам",
-            tags = "Admin: Комментарии",
-            description = "Эндпоинт возвращает полную информацию обо всех комментариях, подходящих под переданные условия.\n" +
-                    "\nВ случае, если по заданным фильтрам не найдено ни одного комментария, возвращает пустой список",
+    @Operation(summary = "Search for comments by parameters",
+            tags = "Admin: Comments",
+            description = "The endpoint returns complete information about all comments that match the passed conditions.\n" +
+                    "\nIf no comments are found for the specified filters, returns an empty list",
             operationId = "getAllCommentsByParams")
     @GetMapping()
     public List<CommentDto> getAllByParams(
             @RequestParam(required = false)
-            @Parameter(description = "Текст, присутствующий в комментарии") String text,
+            @Parameter(description = "Text present in the comment") String text,
             @RequestParam(required = false)
-            @Parameter(description = "Список id пользователей, чьи комментарии нужно найти") Set<Long> users,
+            @Parameter(description = "List of user IDs whose comments need to be found") Set<Long> users,
             @RequestParam(required = false)
-            @Parameter(description = "Список id эвентов, в которых будет вестись поиск") Set<Long> events,
-            @RequestParam(required = false)
-            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-            @Parameter(description = "Дата и время не раньше которых должен быть опубликован комментарий") LocalDateTime rangeStart,
+            @Parameter(description = "List of event IDs to be searched for") Set<Long> events,
             @RequestParam(required = false)
             @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-            @Parameter(description = "Дата и время не позже которых должен быть опубликован комментарий") LocalDateTime rangeEnd,
+            @Parameter(description = "Date and time not earlier than when the comment should be published") LocalDateTime rangeStart,
+            @RequestParam(required = false)
+            @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+            @Parameter(description = "Date and time no later than which the comment should be published") LocalDateTime rangeEnd,
             @RequestParam(required = false, defaultValue = "0")
-            @Parameter(description = "Количество комментариев, которые нужно пропустить для формирования текущего набора") Integer from,
+            @Parameter(description = "The number of comments that need to be skipped to form the current set") Integer from,
             @RequestParam(required = false, defaultValue = "10")
-            @Parameter(description = "Количество комментариев в наборе") Integer size,
+            @Parameter(description = "Number of comments in the set") Integer size,
             HttpServletRequest httpServletRequest) {
-        log.info("Получен {} запрос к {} от {} ", httpServletRequest.getMethod(),
+        log.info("Received {} request to {} from {} ", httpServletRequest.getMethod(),
                 httpServletRequest.getRequestURI(),
                 httpServletRequest.getRemoteAddr());
         return commentService.getAllByParams(new CommentSearchParamsDto(text,

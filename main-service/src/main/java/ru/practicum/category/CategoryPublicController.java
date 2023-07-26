@@ -19,7 +19,7 @@ public class CategoryPublicController {
     public List<CategoryDto> getAll(@RequestParam(defaultValue = "0") Integer from,
                                     @RequestParam(defaultValue = "10") Integer size,
                                     HttpServletRequest httpServletRequest) {
-        log.info("Получен {} запрос к {} от {} ", httpServletRequest.getMethod(),
+        log.info("Received {} request to {} from {} ", httpServletRequest.getMethod(),
                 httpServletRequest.getRequestURI(),
                 httpServletRequest.getRemoteAddr());
         return categoryService.getAll(from, size);
@@ -28,7 +28,7 @@ public class CategoryPublicController {
     @GetMapping("/{catId}")
     public CategoryDto getById(@PathVariable Long catId,
                                HttpServletRequest httpServletRequest) {
-        log.info("Получен {} запрос к {} от {} ", httpServletRequest.getMethod(),
+        log.info("Received {} request to {} from {} ", httpServletRequest.getMethod(),
                 httpServletRequest.getRequestURI(),
                 httpServletRequest.getRemoteAddr());
         return categoryService.getById(catId);

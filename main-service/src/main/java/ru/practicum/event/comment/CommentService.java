@@ -1,6 +1,7 @@
 package ru.practicum.event.comment;
 
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -19,14 +20,17 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import static lombok.AccessLevel.PRIVATE;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@FieldDefaults(level = PRIVATE)
 public class CommentService {
-    private final CommentRepository commentRepository;
-    private final UserService userService;
-    private final EventService eventService;
-    private final CommentMapper commentMapper;
+    final CommentRepository commentRepository;
+    final UserService userService;
+    final EventService eventService;
+    final CommentMapper commentMapper;
 
     @Transactional
     public CommentDto create(Long userId, Long eventId, CommentNewDto commentNewDto) {
