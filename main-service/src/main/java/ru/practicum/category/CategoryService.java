@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.category.dto.CategoryDto;
 import ru.practicum.category.dto.CategoryNewDto;
-import ru.practicum.event.EventRepository;
 import ru.practicum.exception.NotFoundException;
 
 import java.util.List;

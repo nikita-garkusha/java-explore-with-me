@@ -1,7 +1,8 @@
 package ru.practicum.event.model;
 
-import lombok.*;
-import lombok.experimental.FieldDefaults;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.practicum.category.Category;
 import ru.practicum.location.Location;
 import ru.practicum.user.User;
@@ -9,61 +10,56 @@ import ru.practicum.user.User;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-import static lombok.AccessLevel.PRIVATE;
-
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "EVENTS", schema = "PUBLIC")
-@FieldDefaults(level = PRIVATE)
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
-    String annotation;
+    private String annotation;
 
     @ManyToOne
     @JoinColumn(name = "CATEGORY_ID")
-    Category category;
+    private Category category;
 
     @Column(name = "CONFIRMED_REQUESTS")
-    Long confirmedRequests;
+    private Long confirmedRequests;
 
     @Column(name = "CREATED_ON")
-    LocalDateTime createdOn;
+    private LocalDateTime createdOn;
 
-    String description;
+    private String description;
 
     @Column(name = "EVENT_DATE")
-    LocalDateTime eventDate;
+    private LocalDateTime eventDate;
 
     @ManyToOne
     @JoinColumn(name = "INITIATOR_ID")
-    User initiator;
+    private User initiator;
 
     @OneToOne
     @JoinColumn(name = "LOCATION_ID")
-    Location location;
+    private Location location;
 
-    Boolean paid;
+    private Boolean paid;
 
     @Column(name = "PARTICIPANT_LIMIT")
-    Long participantLimit;
+    private Long participantLimit;
 
     @Column(name = "PUBLISHED_ON")
-    LocalDateTime publishedOn;
+    private LocalDateTime publishedOn;
 
     @Column(name = "REQUEST_MODERATION")
-    Boolean requestModeration;
+    private Boolean requestModeration;
 
     @Enumerated(EnumType.STRING)
-    State state;
+    private State state;
 
-    String title;
+    private String title;
 
-    Long views;
+    private Long views;
 }

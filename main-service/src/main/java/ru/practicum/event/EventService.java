@@ -1,7 +1,6 @@
 package ru.practicum.event;
 
 import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -31,7 +30,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import static lombok.AccessLevel.PRIVATE;
 import static ru.practicum.event.dto.EventAdminUpdateRequestDto.StateAction.PUBLISH_EVENT;
 import static ru.practicum.event.dto.EventAdminUpdateRequestDto.StateAction.REJECT_EVENT;
 import static ru.practicum.event.model.State.*;
@@ -40,17 +38,16 @@ import static ru.practicum.request.Status.CONFIRMED;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-@FieldDefaults(level = PRIVATE)
 public class EventService {
-    final EventRepository eventRepository;
-    final RequestRepository requestRepository;
-    final LocationRepository locationRepository;
-    final UserService userService;
-    final CategoryService categoryService;
-    final EventMapper eventMapper;
-    final LocationMapper locationMapper;
-    final RequestMapper requestMapper;
-    final StatsSender statsSender;
+    private final EventRepository eventRepository;
+    private final RequestRepository requestRepository;
+    private final LocationRepository locationRepository;
+    private final UserService userService;
+    private final CategoryService categoryService;
+    private final EventMapper eventMapper;
+    private final LocationMapper locationMapper;
+    private final RequestMapper requestMapper;
+    private final StatsSender statsSender;
 
     @Transactional
     public List<EventFullDto> getAllByParams(EventSearchParamsAdminDto eventSearchParamsAdminDto,

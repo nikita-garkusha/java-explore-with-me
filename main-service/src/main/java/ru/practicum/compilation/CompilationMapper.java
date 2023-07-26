@@ -9,7 +9,6 @@ import ru.practicum.category.CategoryMapper;
 import ru.practicum.compilation.dto.CompilationDto;
 import ru.practicum.compilation.dto.CompilationNewDto;
 import ru.practicum.compilation.dto.CompilationUpdateDto;
-import ru.practicum.event.EventMapper;
 import ru.practicum.location.LocationMapper;
 import ru.practicum.user.UserMapper;
 

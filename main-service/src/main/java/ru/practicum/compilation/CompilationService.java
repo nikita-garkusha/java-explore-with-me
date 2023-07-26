@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.compilation.dto.CompilationDto;
 import ru.practicum.compilation.dto.CompilationNewDto;
 import ru.practicum.compilation.dto.CompilationUpdateDto;
-import ru.practicum.event.EventRepository;
 import ru.practicum.exception.NotFoundException;
 
 import java.util.HashSet;
