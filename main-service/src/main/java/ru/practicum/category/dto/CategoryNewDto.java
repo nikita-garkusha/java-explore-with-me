@@ -7,8 +7,8 @@ import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import static lombok.AccessLevel.PRIVATE;
 
+import static lombok.AccessLevel.PRIVATE;
 
 @Data
 @AllArgsConstructor

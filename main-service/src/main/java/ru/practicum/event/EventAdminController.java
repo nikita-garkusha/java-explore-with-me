@@ -23,7 +23,7 @@ import java.util.Set;
 @Validated
 public class EventAdminController {
     public final EventService eventService;
-    public final String dataFormat = "yyyy-MM-dd HH:mm:ss";
+    final String dataFormat = "yyyy-MM-dd HH:mm:ss";
 
     @GetMapping()
     public List<EventFullDto> getAll(

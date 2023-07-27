@@ -17,7 +17,7 @@ import static lombok.AccessLevel.PRIVATE;
 @NoArgsConstructor
 @FieldDefaults(level = PRIVATE)
 public class CompilationNewDto {
-    private boolean pinned;
+    boolean pinned;
 
     @NotNull
     @NotBlank

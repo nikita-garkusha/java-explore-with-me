@@ -1,6 +1,7 @@
 package ru.practicum.request;
 
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import static lombok.AccessLevel.PRIVATE;
 import static ru.practicum.event.model.State.PUBLISHED;
 import static ru.practicum.request.Status.CANCELED;
 import static ru.practicum.request.Status.CONFIRMED;
@@ -24,12 +26,13 @@ import static ru.practicum.request.Status.CONFIRMED;
 @RequiredArgsConstructor
 @Slf4j
 @Transactional(readOnly = true)
+@FieldDefaults(makeFinal = true, level = PRIVATE)
 public class RequestService {
-    private final RequestRepository requestRepository;
-    private final EventRepository eventRepository;
-    private final RequestMapper requestMapper;
-    private final UserService userService;
-    private final EventService eventService;
+    RequestRepository requestRepository;
+    EventRepository eventRepository;
+    RequestMapper requestMapper;
+    UserService userService;
+    EventService eventService;
 
     public List<RequestDto> getByUserId(Long userId) {
         User user = userService.getUserById(userId);

@@ -14,13 +14,15 @@ import java.util.List;
 @RequestMapping("/compilations")
 public class CompilationPublicController {
     public final CompilationService compilationService;
+    final String receivedRequest = "Received {} request to {} from {} ";
+
 
     @GetMapping
     public List<CompilationDto> getAll(@RequestParam(required = false) Boolean pinned,
                                        @RequestParam(defaultValue = "0") Integer from,
                                        @RequestParam(defaultValue = "10") Integer size,
                                        HttpServletRequest httpServletRequest) {
-        log.info("Получен {} запрос к {} от {} ", httpServletRequest.getMethod(),
+        log.info(receivedRequest, httpServletRequest.getMethod(),
                 httpServletRequest.getRequestURI(),
                 httpServletRequest.getRemoteAddr());
         return compilationService.getAll(pinned, from, size);
@@ -29,7 +31,7 @@ public class CompilationPublicController {
     @GetMapping("/{compId}")
     public CompilationDto getById(@PathVariable Long compId,
                                   HttpServletRequest httpServletRequest) {
-        log.info("Получен {} запрос к {} от {} ", httpServletRequest.getMethod(),
+        log.info(receivedRequest, httpServletRequest.getMethod(),
                 httpServletRequest.getRequestURI(),
                 httpServletRequest.getRemoteAddr());
         return compilationService.getById(compId);

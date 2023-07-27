@@ -3,9 +3,9 @@ package ru.practicum.category;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import static lombok.AccessLevel.PRIVATE;
-
 import javax.persistence.*;
+
+import static lombok.AccessLevel.PRIVATE;
 
 @Getter
 @Setter

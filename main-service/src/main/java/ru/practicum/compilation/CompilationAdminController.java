@@ -24,7 +24,7 @@ public class CompilationAdminController {
     @ResponseStatus(HttpStatus.CREATED)
     public CompilationDto create(@RequestBody @Valid CompilationNewDto compilationNewDto,
                                  HttpServletRequest httpServletRequest) {
-        log.info("Получен {} запрос к {} от {} ", httpServletRequest.getMethod(),
+        log.info("Received {} request to {} from {} ", httpServletRequest.getMethod(),
                 httpServletRequest.getRequestURI(),
                 httpServletRequest.getRemoteAddr());
         return compilationService.create(compilationNewDto);
@@ -34,7 +34,7 @@ public class CompilationAdminController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable Long compId,
                            HttpServletRequest httpServletRequest) {
-        log.info("Получен {} запрос к {} от {} ", httpServletRequest.getMethod(),
+        log.info("Received {} request to {} from {} ", httpServletRequest.getMethod(),
                 httpServletRequest.getRequestURI(),
                 httpServletRequest.getRemoteAddr());
         compilationService.deleteById(compId);
@@ -44,7 +44,7 @@ public class CompilationAdminController {
     public CompilationDto update(@PathVariable Long compId,
                                  @RequestBody @Valid CompilationUpdateDto compilationUpdateDto,
                                  HttpServletRequest httpServletRequest) {
-        log.info("Получен {} запрос к {} от {} ", httpServletRequest.getMethod(),
+        log.info("Received {} request to {} from {} ", httpServletRequest.getMethod(),
                 httpServletRequest.getRequestURI(),
                 httpServletRequest.getRemoteAddr());
         return compilationService.update(compId, compilationUpdateDto);

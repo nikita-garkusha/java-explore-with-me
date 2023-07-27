@@ -139,13 +139,15 @@ public class EventService {
 
             if (eventAdminUpdateRequestDto.getStateAction().equals(PUBLISH_EVENT)
                     && !oldEvent.getState().equals(PENDING)) {
-                throw new IllegalStateException(String.format("Wrong state of event: %s", oldEvent.getState()));
+                throw new IllegalStateException("Wrong state of event: " +
+                        oldEvent.getState());
             }
 
             if ((eventAdminUpdateRequestDto.getStateAction().equals(REJECT_EVENT) ||
                     (eventAdminUpdateRequestDto).getStateAction().equals(PUBLISH_EVENT))
                     && oldEvent.getState().equals(PUBLISHED)) {
-                throw new IllegalStateException(String.format("Wrong state of event: %s", oldEvent.getState()));
+                throw new IllegalStateException("Wrong state of event: " +
+                        oldEvent.getState());
             }
 
             switch (eventAdminUpdateRequestDto.getStateAction()) {
@@ -180,11 +182,12 @@ public class EventService {
         validateBeforeDate(oldEvent.getEventDate(), 2);
 
         if (!oldEvent.getInitiator().getId().equals(user.getId())) {
-            throw new IllegalStateException(String.format("You don't have event with id: %s", eventId));
+            throw new IllegalStateException("User don't have event with id " + eventId);
         }
 
         if (oldEvent.getState().equals(PUBLISHED)) {
-            throw new IllegalStateException(String.format("Wrong state of event: %s", oldEvent.getState()));
+            throw new IllegalStateException("Wrong state of event: " +
+                    oldEvent.getState());
         }
 
         if (eventUserUpdateRequestDto.getStateAction() != null) {
@@ -216,7 +219,7 @@ public class EventService {
         Event event = getEventById(eventId);
 
         if (!event.getInitiator().getId().equals(user.getId())) {
-            throw new IllegalStateException(String.format("You don't have event with id: %s", eventId));
+            throw new IllegalStateException("User don't have event with id " + eventId);
         }
 
         if (event.getConfirmedRequests() +
